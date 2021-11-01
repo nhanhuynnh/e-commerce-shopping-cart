@@ -6,7 +6,6 @@ import CheckBox from '../components/CheckBox';
 import productData from '../assets/fake-data/products';
 import category from '../assets/fake-data/category';
 import colors from '../assets/fake-data/product-color';
-import size from '../assets/fake-data/product-size';
 import Button from '../components/Button';
 import InfinityList from '../components/InfinityList';
 
@@ -144,34 +143,6 @@ const Catalog = () => {
                   />
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className='catalog__filter__widget'>
-            <div className='catalog__filter__widget__title'>kích cỡ</div>
-            <div className='catalog__filter__widget__content'>
-              {size.map((item, index) => (
-                <div
-                  key={index}
-                  className='catalog__filter__widget__content__item'
-                >
-                  <CheckBox
-                    label={item.display}
-                    onChange={(input) =>
-                      filterSelect('SIZE', input.checked, item)
-                    }
-                    checked={filter.size.includes(item.size)}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className='catalog__filter__widget'>
-            <div className='catalog__filter__widget__content'>
-              <Button size='sm' onClick={clearFilter}>
-                xóa bộ lọc
-              </Button>
             </div>
           </div>
         </div>
