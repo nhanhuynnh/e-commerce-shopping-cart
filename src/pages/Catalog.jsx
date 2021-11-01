@@ -109,6 +109,22 @@ const Catalog = () => {
             <div className='catalog__filter__widget__title'>
               danh mục sản phẩm
             </div>
+            <div className='catalog__filter__widget__content'>
+              {category.map((item, index) => (
+                <div
+                  key={index}
+                  className='catalog__filter__widget__content__item'
+                >
+                  <CheckBox
+                    label={item.display}
+                    onChange={(input) =>
+                      filterSelect('CATEGORY', input.checked, item)
+                    }
+                    checked={filter.category.includes(item.categorySlug)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className='catalog__filter__widget'>
@@ -133,6 +149,22 @@ const Catalog = () => {
 
           <div className='catalog__filter__widget'>
             <div className='catalog__filter__widget__title'>kích cỡ</div>
+            <div className='catalog__filter__widget__content'>
+              {size.map((item, index) => (
+                <div
+                  key={index}
+                  className='catalog__filter__widget__content__item'
+                >
+                  <CheckBox
+                    label={item.display}
+                    onChange={(input) =>
+                      filterSelect('SIZE', input.checked, item)
+                    }
+                    checked={filter.size.includes(item.size)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className='catalog__filter__widget'>
