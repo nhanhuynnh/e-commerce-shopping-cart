@@ -60,8 +60,6 @@ const Catalog = () => {
     }
   };
 
-  const clearFilter = () => setFilter(initFilter);
-
   const updateProducts = useCallback(() => {
     let temp = productList;
 
