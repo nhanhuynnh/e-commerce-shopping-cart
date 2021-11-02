@@ -7,6 +7,7 @@ import productData from '../assets/fake-data/products';
 import category from '../assets/fake-data/category';
 import colors from '../assets/fake-data/product-color';
 import Button from '../components/Button';
+import InfinityList from '../components/InfinityList';
 
 const Catalog = () => {
   const initFilter = {
@@ -16,6 +17,8 @@ const Catalog = () => {
   };
 
   const productList = productData.getAllProducts();
+
+  const [products, setProducts] = useState(productList);
 
   const [filter, setFilter] = useState(initFilter);
 
@@ -57,8 +60,6 @@ const Catalog = () => {
     }
   };
 
-  const clearFilter = () => setFilter(initFilter);
-
   const updateProducts = useCallback(() => {
     let temp = productList;
 
@@ -79,6 +80,8 @@ const Catalog = () => {
         return check !== undefined;
       });
     }
+
+    setProducts(temp);
   }, [filter, productList]);
 
   useEffect(() => {
@@ -140,23 +143,14 @@ const Catalog = () => {
               ))}
             </div>
           </div>
-
-          <div className='catalog__filter__widget'>
-            <div className='catalog__filter__widget__title'>kích cỡ</div>
-          </div>
-
-          <div className='catalog__filter__widget'>
-            <div className='catalog__filter__widget__content'>
-              <Button size='sm' onClick={clearFilter}>
-                xóa bộ lọc
-              </Button>
-            </div>
-          </div>
         </div>
         <div className='catalog__filter__toggle'>
           <Button size='sm' onClick={() => showHideFilter()}>
             bộ lọc
           </Button>
+        </div>
+        <div className='catalog__content'>
+          <InfinityList data={products} />
         </div>
       </div>
     </Helmet>
