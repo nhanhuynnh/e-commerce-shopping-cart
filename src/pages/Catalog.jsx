@@ -17,8 +17,6 @@ const Catalog = () => {
 
   const productList = productData.getAllProducts();
 
-  const [products, setProducts] = useState(productList);
-
   const [filter, setFilter] = useState(initFilter);
 
   const filterSelect = (type, checked, item) => {
@@ -81,8 +79,6 @@ const Catalog = () => {
         return check !== undefined;
       });
     }
-
-    setProducts(temp);
   }, [filter, productList]);
 
   useEffect(() => {
