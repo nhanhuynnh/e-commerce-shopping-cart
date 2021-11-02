@@ -1,7 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
-const ProductView = () => {
-  return <div>ProductView</div>;
+import { withRouter } from 'react-router';
+
+const ProductView = (props) => {
+  return (
+    <div className='product'>
+      <div className='product__images'>
+        <div className='product__images__list'>
+          <div className='product__images__list__item'></div>
+          <div className='product__images__list__item'></div>
+        </div>
+        <div className='product__images__main'></div>
+      </div>
+    </div>
+  );
 };
 
-export default ProductView;
+ProductView.propTypes = {
+  product: PropTypes.object.isRequired,
+};
+
+export default withRouter(ProductView);
