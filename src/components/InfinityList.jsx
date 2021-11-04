@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Grid from './Grid';
@@ -6,7 +5,7 @@ import ProductCard from './ProductCard';
 
 const InfinityList = (props) => {
   return (
-    <div ref={listRef}>
+    <div>
       <Grid col={3} mdCol={2} smCol={1} gap={20}>
         {data.map((item, index) => (
           <ProductCard />
