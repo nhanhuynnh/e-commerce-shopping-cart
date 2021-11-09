@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import Helmet from '../components/Helmet';
@@ -10,8 +11,10 @@ import productData from '../assets/fake-data/products';
 import numberWithCommas from '../utils/numberWithCommas';
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cartItems.value);
+
   const [cartProducts, setCartProducts] = useState(
-    productData.getCartItemsInfo()
+    productData.getCartItemsInfo(cartItems)
   );
 
   const [totalProducts, setTotalProducts] = useState(0);
@@ -19,10 +22,17 @@ const Cart = () => {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    setCartProducts(productData.getCartItemsInfo());
-    setTotalPrice();
-    setTotalProducts();
-  }, []);
+    setCartProducts(productData.getCartItemsInfo(cartItems));
+    setTotalPrice(
+      cartItems.reduce(
+        (total, item) => total + Number(item.quantity) * Number(item.price),
+        0
+      )
+    );
+    setTotalProducts(
+      cartItems.reduce((total, item) => total + Number(item.quantity), 0)
+    );
+  }, [cartItems]);
 
   return (
     <Helmet title='Giỏ hàng'>
