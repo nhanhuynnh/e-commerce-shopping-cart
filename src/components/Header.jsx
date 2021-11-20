@@ -57,9 +57,6 @@ const Header = () => {
           </Link>
         </div>
         <div className='header__menu'>
-          <div className='header__menu__mobile-toggle' onClick={menuToggle}>
-            <i className='bx bx-menu-alt-left'></i>
-          </div>
           <div className='header__menu__left' ref={menuLeft}>
             <div className='header__menu__left__close' onClick={menuToggle}>
               <i className='bx bx-chevron-left'></i>
@@ -79,17 +76,13 @@ const Header = () => {
             ))}
           </div>
           <div className='header__menu__right'>
-            <div className='header__menu__item header__menu__right__item'>
-              <i className='bx bx-search'></i>
-            </div>
+            <div className='header__menu__item header__menu__right__item'></div>
             <div className='header__menu__item header__menu__right__item'>
               <Link to='/cart'>
                 <i className='bx bx-shopping-bag'></i>
               </Link>
             </div>
-            <div className='header__menu__item header__menu__right__item'>
-              <i className='bx bx-user'></i>
-            </div>
+            <div className='header__menu__item header__menu__right__item'></div>
           </div>
         </div>
       </div>

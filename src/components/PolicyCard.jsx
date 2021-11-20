@@ -9,9 +9,7 @@ const PolicyCard = (props) => {
       </div>
       <div className='policy-card__info'>
         <div className='policy-card__info__name'>{props.name}</div>
-        <div className='policy-card__info__description'>
-          {props.description}
-        </div>
+        <div className='policy-card__info__description'>description</div>
       </div>
     </div>
   );
@@ -19,7 +17,6 @@ const PolicyCard = (props) => {
 
 PolicyCard.propTypes = {
   name: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
 };
 
