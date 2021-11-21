@@ -34,9 +34,6 @@ export const cartItemsSlice = createSlice({
             id: duplicate[0].id,
             slug: newItem.slug,
             color: newItem.color,
-            size: newItem.size,
-            price: newItem.price,
-            quantity: newItem.quantity + duplicate[0].quantity,
           },
         ];
       } else {
@@ -79,18 +76,10 @@ export const cartItemsSlice = createSlice({
             id: item[0].id,
             slug: newItem.slug,
             color: newItem.color,
-            size: newItem.size,
-            price: newItem.price,
-            quantity: newItem.quantity,
           },
         ];
       }
-      localStorage.setItem(
-        'cartItems',
-        JSON.stringify(
-          state.value.sort((a, b) => (a.id > b.id ? 1 : a.id < b.id ? -1 : 0))
-        )
-      );
+      localStorage.setItem('cartItems');
     },
     removeItem: (state, action) => {
       const item = action.payload;
