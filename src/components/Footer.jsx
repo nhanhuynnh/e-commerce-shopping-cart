@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Grid from './Grid';
-import logo from '../assets/images/Logo-2.png';
 
 const footerAboutLinks = [
   {
@@ -82,7 +81,7 @@ const Footer = () => {
           <div className='footer__about'>
             <p>
               <Link to='/'>
-                <img src={logo} className='footer__logo' alt='' />
+                <img src='' className='footer__logo' alt='logo' />
               </Link>
             </p>
             <p>
