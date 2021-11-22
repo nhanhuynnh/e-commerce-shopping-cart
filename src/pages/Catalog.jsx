@@ -21,45 +21,8 @@ const Catalog = () => {
 
   const [products, setProducts] = useState(productList);
 
-  const [filter, setFilter] = useState(initFilter);
 
   const filterSelect = (type, checked, item) => {
-    if (checked) {
-      switch (type) {
-        case 'CATEGORY':
-          setFilter({
-            ...filter,
-            category: [...filter.category, item.categorySlug],
-          });
-          break;
-        case 'COLOR':
-          setFilter({ ...filter, color: [...filter.color, item.color] });
-          break;
-        case 'SIZE':
-          setFilter({ ...filter, size: [...filter.size, item.size] });
-          break;
-        default:
-      }
-    } else {
-      switch (type) {
-        case 'CATEGORY':
-          const newCategory = filter.category.filter(
-            (e) => e !== item.categorySlug
-          );
-          setFilter({ ...filter, category: newCategory });
-          break;
-        case 'COLOR':
-          const newColor = filter.color.filter((e) => e !== item.color);
-          setFilter({ ...filter, color: newColor });
-          break;
-        case 'SIZE':
-          const newSize = filter.size.filter((e) => e !== item.size);
-          setFilter({ ...filter, size: newSize });
-          break;
-        default:
-      }
-    }
-  };
 
   const clearFilter = () => setFilter(initFilter);
 

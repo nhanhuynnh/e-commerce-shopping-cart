@@ -4,7 +4,7 @@ import Helmet from '../components/Helmet';
 import Section, { SectionBody, SectionTitle } from '../components/Section';
 import Grid from '../components/Grid';
 import ProductCard from '../components/ProductCard';
-// import ProductView from '../components/ProductView';
+import ProductView from '../components/ProductView';
 
 import productData from '../assets/fake-data/products';
 
@@ -13,12 +13,16 @@ const Product = (props) => {
 
   const relatedProducts = productData.getProducts(8);
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [product]);
+
   return (
     <Helmet title={product.title}>
       <Section>
-        {/* <SectionBody>
+        <SectionBody>
           <ProductView product={product} />
-        </SectionBody> */}
+        </SectionBody>
       </Section>
       <Section>
         <SectionTitle>Khám phá thêm</SectionTitle>
