@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import { useDispatch } from 'react-redux';
 import { updateItem, removeItem } from '../redux/shopping-cart/cartItemsSlide';
 
+import numberWithCommas from '../utils/numberWithCommas';
 import { Link } from 'react-router-dom';
 
 const CartItem = (props) => {
@@ -13,6 +14,11 @@ const CartItem = (props) => {
 
   const [item, setItem] = useState(props.item);
   const [quantity, setQuantity] = useState(props.item.quantity);
+
+  useEffect(() => {
+    setItem(props.item);
+    setQuantity(props.item.quantity);
+  }, [props.item]);
 
   const updateQuantity = (opt) => {
     if (opt === '+') {
@@ -24,6 +30,10 @@ const CartItem = (props) => {
       );
     }
   };
+
+  // const updateCartItem = () => {
+  //     dispatch(updateItem({...item, quantity: quantity}))
+  // }
 
   const removeCartItem = () => {
     console.log('removeCartItem');
@@ -41,7 +51,9 @@ const CartItem = (props) => {
             {`${item.product.title} - ${item.color} - ${item.size}`}
           </Link>
         </div>
-        <div className='cart__item__info__price'></div>
+        <div className='cart__item__info__price'>
+          {numberWithCommas(item.price)}
+        </div>
         <div className='cart__item__info__quantity'>
           <div className='product__info__item__quantity'>
             <div
@@ -50,7 +62,9 @@ const CartItem = (props) => {
             >
               <i className='bx bx-minus'></i>
             </div>
-            <div className='product__info__item__quantity__input'>quantity</div>
+            <div className='product__info__item__quantity__input'>
+              {quantity}
+            </div>
             <div
               className='product__info__item__quantity__btn'
               onClick={() => updateQuantity('+')}
