@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
@@ -11,20 +11,47 @@ const HeroSlider = (props) => {
 
   const [activeSlide, setActiveSlide] = useState(0);
 
+  const nextSlide = useCallback(() => {
+    const index = activeSlide + 1 === data.length ? 0 : activeSlide + 1;
+    setActiveSlide(index);
+  }, [activeSlide, data]);
+
+  const prevSlide = () => {
+    const index = activeSlide - 1 < 0 ? data.length - 1 : activeSlide - 1;
+    setActiveSlide(index);
+  };
+
+  useEffect(() => {
+    if (props.auto) {
+      const slideAuto = setInterval(() => {
+        nextSlide();
+      }, timeOut);
+      return () => {
+        clearInterval(slideAuto);
+      };
+    }
+  }, [nextSlide, timeOut, props]);
+
   return (
     <div className='hero-slider'>
       {data.map((item, index) => (
-        <HeroSliderItem />
+        <HeroSliderItem
+          key={index}
+          item={item}
+          active={index === activeSlide}
+        />
       ))}
       {props.control ? (
         <div className='hero-slider__control'>
-          <div className='hero-slider__control__item'>
+          <div className='hero-slider__control__item' onClick={prevSlide}>
             <i className='bx bx-chevron-left'></i>
           </div>
           <div className='hero-slider__control__item'>
-            <div className='index'></div>
+            <div className='index'>
+              {activeSlide + 1}/{data.length}
+            </div>
           </div>
-          <div className='hero-slider__control__item'>
+          <div className='hero-slider__control__item' onClick={nextSlide}>
             <i className='bx bx-chevron-right'></i>
           </div>
         </div>
@@ -53,12 +80,19 @@ const HeroSliderItem = (props) => (
       </div>
       <div className='hero-slider__item__info__btn'>
         <Link to={props.item.path}>
-          <Button>xem chi tiết</Button>
+          <Button
+            backgroundColor={props.item.color}
+            icon='bx bx-cart'
+            animate={true}
+          >
+            xem chi tiết
+          </Button>
         </Link>
       </div>
     </div>
     <div className='hero-slider__item__image'>
-      <img src='' alt='' />
+      <div className={`shape bg-${props.item.color}`}></div>
+      <img src={props.item.img} alt='' />
     </div>
   </div>
 );
