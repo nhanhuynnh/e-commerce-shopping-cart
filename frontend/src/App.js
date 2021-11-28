@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
@@ -24,6 +25,9 @@ function App() {
   return (
     <>
       <Grid>
+        <Main>
+          <Route path="/products/:id" />
+        </Main>
         <Navigation />
         <Main />
         <Footer />

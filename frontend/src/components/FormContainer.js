@@ -9,11 +9,16 @@ const Container = styled.div`
   border-radius: 0.5rem;
 `;
 
+const Wrapper = styled.div`
+  padding: 0 3rem;
+  width: 100%;
+  max-width: 60rem;
+`;
 const FormContainer = ({ children }) => {
   return (
-    <>
+    <Wrapper>
       <Container>{children}</Container>
-    </>
+    </Wrapper>
   );
 };
 
