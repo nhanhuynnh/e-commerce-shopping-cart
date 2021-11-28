@@ -1,8 +1,11 @@
 import React, { useEffect } from 'react';
 import { Route } from 'react-router-dom';
+import ReactNotification from 'react-notifications-component';
 import styled from 'styled-components';
+
 import Footer from './components/Footer';
 import Navigation from './components/Navigation';
+import { ToastContainer } from 'react-toastify';
 
 const Grid = styled.div`
   position: relative;
@@ -24,14 +27,15 @@ function App() {
 
   return (
     <>
+      <ReactNotification />
       <Grid>
+        <Navigation />
         <Main>
           <Route path="/products/:id" />
         </Main>
-        <Navigation />
-        <Main />
         <Footer />
       </Grid>
+      <ToastContainer autoClose={2500} />
     </>
   );
 }
